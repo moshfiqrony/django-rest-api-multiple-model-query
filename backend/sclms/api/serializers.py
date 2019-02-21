@@ -1,18 +1,40 @@
 from rest_framework import serializers
 
-from ..models import CL, Agent, Campaign, CampaignDetails
+from ..models import CL, Agent, Campaign, CampaignDetails, Districts
+
+
+class DistrictsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Districts
+        fields = ('id', 'name')
 
 
 class CLSerializers(serializers.ModelSerializer):
     class Meta:
         model = CL
-        fields = ('id', 'phone', 'password')
+        fields = ('id', 'phone', 'password', 'name', 'address', 'district')
+
+
+class CLSerializers2(serializers.ModelSerializer):
+    district = DistrictsSerializers(read_only=True)
+
+    class Meta:
+        model = CL
+        fields = ('id', 'phone', 'password', 'name', 'address', 'district')
 
 
 class AgentSerializers(serializers.ModelSerializer):
     class Meta:
         model = Agent
-        fields = ('id', 'phone', 'password')
+        fields = ('id', 'phone', 'password', 'name', 'address', 'district')
+
+
+class AgentSerializers2(serializers.ModelSerializer):
+    district = DistrictsSerializers(read_only=True)
+
+    class Meta:
+        model = Agent
+        fields = ('id', 'phone', 'password', 'name', 'address', 'district')
 
 
 class CampaignSerializers(serializers.ModelSerializer):
@@ -28,9 +50,10 @@ class AddCampaignDetailsSerializers(serializers.ModelSerializer):
 
 
 class CampaignDetailsSerializers(serializers.ModelSerializer):
-    clId = CLSerializers(read_only=True,)
-    agentId = AgentSerializers(read_only=True)
+    clId = CLSerializers2(read_only=True, )
+    agentId = AgentSerializers2(read_only=True)
     campaignId = CampaignSerializers(read_only=True)
+
     class Meta:
         model = CampaignDetails
         fields = ('id', 'clId', 'agentId', 'campaignId')

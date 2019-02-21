@@ -1,41 +1,39 @@
 import React from 'react'
-import { Table, Divider, Tag } from 'antd';
+import { Table, } from 'antd';
 
 const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
+  title: 'Campaign Name',
+  dataIndex: 'campaignId.name',
   key: 'name',
   render: text => <a href="javascript:;">{text}</a>,
-}, {
-  title: 'Age',
-  dataIndex: 'age',
-  key: 'age',
-}, {
-  title: 'Address',
-  dataIndex: 'address',
-  key: 'address',
+},{
+  title: 'CL Name',
+  dataIndex: 'clId.name',
+  key: 'clname',
+},{
+  title: 'CL district',
+  dataIndex: 'clId.district.name',
+  key: 'cldistrict',
+},{
+  title: 'CL Phone Number',
+  dataIndex: 'clId.phone',
+  key: 'clphone',
+},{
+  title: 'CL Name',
+  dataIndex: 'agentId.name',
+  key: 'clname',
+},{
+  title: 'CL district',
+  dataIndex: 'agentId.district.name',
+  key: 'cldistrict',
+},{
+  title: 'CL Phone Number',
+  dataIndex: 'agentId.phone',
+  key: 'clphone',
 }];
 
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  age: 32,
-  address: 'New York No. 1 Lake Park',
-  tags: ['nice', 'developer'],
-}, {
-  key: '2',
-  name: 'Jim Green',
-  age: 42,
-  address: 'London No. 1 Lake Park',
-  tags: ['loser'],
-}, {
-  key: '3',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-  tags: ['cool', 'teacher'],
-}];
 
-export default function () {
-    return(<Table columns={columns} dataSource={data} />)
+
+export default function (props) {
+    return(<Table columns={columns} dataSource={props.data} />)
 }

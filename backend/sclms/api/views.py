@@ -4,10 +4,15 @@ from django.shortcuts import get_object_or_404
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .serializers import CLSerializers, AgentSerializers, CampaignSerializers, AddCampaignDetailsSerializers, \
-    CampaignDetailsSerializers
-from ..models import CL, Agent, Campaign, CampaignDetails
+from .serializers import CLSerializers, AgentSerializers, CampaignSerializers, AddCampaignDetailsSerializers, DistrictsSerializers, CampaignDetailsSerializers
+from ..models import CL, Agent, Campaign, CampaignDetails, Districts
 
+
+class DistrictsViews(viewsets.ModelViewSet):
+    queryset = Districts.objects.all()
+    serializer_class = DistrictsSerializers
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('name',)
 
 class CLViews(viewsets.ModelViewSet):
     queryset = CL.objects.all()

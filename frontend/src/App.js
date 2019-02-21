@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ShowData/>
+        <ShowData data={this.state.cl}/>
       </div>
     );
   }
