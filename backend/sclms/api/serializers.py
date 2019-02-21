@@ -21,7 +21,16 @@ class CampaignSerializers(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
+class AddCampaignDetailsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = CampaignDetails
+        fields = ('id', 'clId', 'agentId', 'campaignId')
+
+
 class CampaignDetailsSerializers(serializers.ModelSerializer):
+    clId = CLSerializers(read_only=True,)
+    agentId = AgentSerializers(read_only=True)
+    campaignId = CampaignSerializers(read_only=True)
     class Meta:
         model = CampaignDetails
         fields = ('id', 'clId', 'agentId', 'campaignId')
