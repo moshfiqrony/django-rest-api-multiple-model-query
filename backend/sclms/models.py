@@ -6,19 +6,22 @@ class Districts(models.Model):
 
 
 class CL(models.Model):
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20, unique=True)
     password = models.CharField(max_length=30)
     name = models.CharField(max_length=30, null=True)
     district = models.ForeignKey(Districts, on_delete=models.CASCADE, null=True)
     address = models.CharField(max_length=30, null=True)
+    active = models.BooleanField(default=False)
 
 
 class Agent(models.Model):
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20, unique=True)
     password = models.CharField(max_length=30)
     name = models.CharField(max_length=30, null=True)
     district = models.ForeignKey(Districts, on_delete=models.CASCADE, null=True)
     address = models.CharField(max_length=30, null=True)
+    asign = models.BooleanField(default=False)
+    active = models.BooleanField(default=False)
 
 class Campaign(models.Model):
     name = models.CharField(max_length=30)

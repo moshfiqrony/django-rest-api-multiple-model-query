@@ -12,7 +12,7 @@ class DistrictsSerializers(serializers.ModelSerializer):
 class CLSerializers(serializers.ModelSerializer):
     class Meta:
         model = CL
-        fields = ('id', 'phone', 'password', 'name', 'address', 'district')
+        fields = ('id', 'phone', 'password', 'name', 'address', 'district', 'active')
 
 
 class CLSerializers2(serializers.ModelSerializer):
@@ -20,13 +20,13 @@ class CLSerializers2(serializers.ModelSerializer):
 
     class Meta:
         model = CL
-        fields = ('id', 'phone', 'password', 'name', 'address', 'district')
+        fields = ('id', 'phone', 'password', 'name', 'address', 'district', 'active')
 
 
 class AgentSerializers(serializers.ModelSerializer):
     class Meta:
         model = Agent
-        fields = ('id', 'phone', 'password', 'name', 'address', 'district')
+        fields = ('id', 'phone', 'password', 'name', 'address', 'district', 'asign', 'active')
 
 
 class AgentSerializers2(serializers.ModelSerializer):
@@ -34,7 +34,7 @@ class AgentSerializers2(serializers.ModelSerializer):
 
     class Meta:
         model = Agent
-        fields = ('id', 'phone', 'password', 'name', 'address', 'district')
+        fields = ('id', 'phone', 'password', 'name', 'address', 'district', 'asign', 'active')
 
 
 class CampaignSerializers(serializers.ModelSerializer):
@@ -50,7 +50,7 @@ class AddCampaignDetailsSerializers(serializers.ModelSerializer):
 
 
 class CampaignDetailsSerializers(serializers.ModelSerializer):
-    clId = CLSerializers2(read_only=True, )
+    clId = CLSerializers2(read_only=True,)
     agentId = AgentSerializers2(read_only=True)
     campaignId = CampaignSerializers(read_only=True)
 
