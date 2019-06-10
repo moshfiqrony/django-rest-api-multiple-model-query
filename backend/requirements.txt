@@ -1,4 +1,4 @@
-Django==2.1.7
+Django==2.1.9
 django-filters==0.2.1
 djangorestframework==3.9.1
 pytz==2018.9
